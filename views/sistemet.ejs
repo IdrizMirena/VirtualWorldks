@@ -1,0 +1,381 @@
+<%- include('partials/header') %>
+<style>
+  :root {
+    --primary-yellow: #ffc107;
+    --light-yellow: #fff3cd;
+    --dark-yellow: #ffb347;
+    --shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+
+  body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .dashboard-header {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb347 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .role-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    color: #212529;
+    box-shadow: var(--shadow);
+    height: 100%;
+    transition: var(--transition);
+    border: none;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .role-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary-yellow), var(--dark-yellow));
+    z-index: 2;
+  }
+
+  .role-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .role-card .card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+  }
+
+  .role-card .card-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #343a40;
+  }
+
+  .role-card .card-date {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .role-card .card-description {
+    color: #495057;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .role-card .card-btn {
+    background: linear-gradient(to right, var(--primary-yellow), var(--dark-yellow));
+    border: none;
+    color: #212529;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .role-card .card-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #212529;
+  }
+
+  .role-card .card-btn i {
+    transition: var(--transition);
+  }
+
+  .role-card:hover .card-btn i {
+    transform: translateX(3px);
+  }
+
+  .search-container {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .search-input {
+    border-radius: 50px;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e9ecef;
+    transition: var(--transition);
+  }
+
+  .search-input:focus {
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  }
+
+  .category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .category-btn {
+    background: white;
+    border: 2px solid #e9ecef;
+    color: #495057;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+  }
+
+  .category-btn:hover, .category-btn.active {
+    background: var(--primary-yellow);
+    border-color: var(--primary-yellow);
+    color: #212529;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-header {
+      padding: 2rem 0;
+      border-radius: 0 0 1rem 1rem;
+    }
+    
+    .role-card {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<!-- External Styles -->
+<link rel="stylesheet" href="/styles/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+<!-- Dashboard Header -->
+<div class="dashboard-header text-center animate__animated animate__fadeIn">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-3">Sistemet Virtuale</h1>
+    <p class="lead mb-4">Zgjidhni një nga asistentët tanë të mençur për ndihmë të specializuar</p>
+    
+    <div class="search-container">
+      <div class="input-group">
+        <input type="text" class="form-control search-input" placeholder="Kërko sisteme...">
+        <button class="btn btn-warning" type="button">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="category-filter">
+      <button class="category-btn active">Të gjitha</button>
+      <button class="category-btn">Shëndetësi</button>
+      <button class="category-btn">Edukim</button>
+      <button class="category-btn">Teknologji</button>
+      <button class="category-btn">Financa</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container py-5">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Doctor Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="health">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-heart-pulse"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Doktori Virtual</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Një mjek i mençur në formë digjitale – i ndërtuar me inteligjencë artificiale dhe një avatar 3D që të flet, dëgjon dhe analizon. Ai ofron konsultime të menjëhershme, vlerësime simptomash dhe këshilla të bazuara në protokolle mjekësore moderne.</p>
+        <a href="/doctor" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Teacher Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="education" style="animation-delay: 0.1s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-book"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Mësuesi i Gjuhës Angleze</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Mëso anglishten me një asistent të fuqizuar nga AI dhe prezantuar në formë 3D që të ndjek ritmin dhe stilin tënd. Ai komunikon me ty në kohë reale, ndihmon me shqiptimin dhe rregullat gramatikore.</p>
+        <a href="/teacher" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Programmer Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="technology" style="animation-delay: 0.2s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-code-square"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Programeri Virtual</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Një bashkëpunëtor teknik që funksionon me AI të avancuar dhe paraqitet si një figurë 3D interaktive. Ai ndihmon me shkrimin e kodit, zbulon bugjet dhe sugjeron optimizime në kohë reale.</p>
+        <a href="/programmer" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Career Expert Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="education" style="animation-delay: 0.3s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-briefcase"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Eksperti i Karrierës</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Planifikimi i karrierës nuk ka qenë kurrë më i lehtë. Ky ekspert virtual përdor AI për të analizuar profilin tënd dhe tendencat e tregut, duke sugjeruar rrugë zhvillimi profesional.</p>
+        <a href="/karrieres" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- IT Expert Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="technology" style="animation-delay: 0.4s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-pc-display"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Eksperti i IT</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Asistenti virtual për teknologji është një ekspert digjital që mbulon gjithçka nga konfigurimet teknike deri te siguria kibernetike.</p>
+        <a href="/it" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Economist Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="finance" style="animation-delay: 0.5s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-graph-up"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Ekonomisti Virtual</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Këshillat financiare marrin një formë të re me këtë asistent AI të ndërtuar për të analizuar tregjet, buxhetet dhe investimet.</p>
+        <a href="/ekonomisti" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Travel Expert Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="other" style="animation-delay: 0.6s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-airplane"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Eksperti i Udhëtimit</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Planifiko udhëtimet si një profesionist me ndihmën e një asistenti të mençur dhe të vizualizuar në 3D.</p>
+        <a href="/udhetimi" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Fitness Trainer Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="health" style="animation-delay: 0.7s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-activity"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Trajneri i Fitnesit</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Një trajner personal që nuk mungon kurrë dhe nuk lodhet. Fuqizuar me AI dhe i paraqitur si një model 3D që udhëheq çdo ushtrim.</p>
+        <a href="/trajneri" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- History Teacher Card -->
+    <div class="col-md-4 animate__animated animate__fadeInUp" data-category="education" style="animation-delay: 0.8s">
+      <div class="role-card h-100">
+        <div class="card-icon">
+          <i class="bi bi-hourglass-split"></i>
+        </div>
+        <p class="text-uppercase text-muted small mb-1">Virtual Role</p>
+        <h3 class="card-title">Mësuesi i Historisë</h3>
+        <p class="card-date"><i class="bi bi-calendar-event me-2"></i>April 25, 2025</p>
+        <p class="card-description">Zbulo të kaluarën dhe traditat botërore përmes një mësuesi virtual të bazuar në AI, që flet, shpjegon dhe ndërvepron me ty si një figurë 3D.</p>
+        <a href="/historiku" class="card-btn">
+          Hyr <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JavaScript for interactive features -->
+<script>
+  // Category filter functionality
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Update active button
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const category = this.textContent.trim();
+      
+      // Show/hide cards based on category
+      document.querySelectorAll('.role-card').forEach(card => {
+        const cardCategory = card.closest('[data-category]').getAttribute('data-category');
+        
+        if (category === 'Të gjitha' || cardCategory === category.toLowerCase()) {
+          card.closest('.col-md-4').style.display = 'block';
+        } else {
+          card.closest('.col-md-4').style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Search functionality
+  document.querySelector('.search-input').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    
+    document.querySelectorAll('.role-card').forEach(card => {
+      const title = card.querySelector('.card-title').textContent.toLowerCase();
+      const description = card.querySelector('.card-description').textContent.toLowerCase();
+      
+      if (title.includes(searchTerm) || description.includes(searchTerm)) {
+        card.closest('.col-md-4').style.display = 'block';
+      } else {
+        card.closest('.col-md-4').style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<%- include('partials/footer') %>

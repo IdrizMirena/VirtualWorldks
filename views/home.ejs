@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual World Kosova</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hero {
+            background: url('https://prod.ucwe.capgemini.com/wp-content/uploads/2023/11/Embedded-software-banner-v4.jpg') no-repeat center center / cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .services {
+            padding: 60px 20px;
+        }
+
+        .service-card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: #2575fc;
+        }
+
+        .about {
+            padding: 60px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .about img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about h2, .about p {
+            color: #343a40;
+        }
+
+        .contact {
+            padding: 60px 20px;
+        }
+
+        .contact h2 {
+            color: #343a40;
+        }
+
+        footer {
+            background: #092c50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #6a11cb;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav style="background-color: #092c50;" class="navbar navbar-expand-lg navbar-dark bg-daarkblue">
+        <div class="container">
+            <a class="navbar-brand" href="#"><b style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Virutal</b> <b style="color: #2575fc;">World Kosova</b> <b style="color: yellow;">.</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      <a style="color: rgb(150, 150, 91);" class="nav-link" href="/register">Sign In</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to <i style="color: gainsboro;">Virutal</i> <b style="color: #6a11cb;">World Kosova</b> <b style="color: yellow;">.</b></h1>
+            <p>Your one-stop solution for all your needs.</p>
+            <a style="background-color: #2574fc00; color: white;" href="#services" class="btn btn-light btn-lg">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="text-center mb-4"><b style="color: purple;">Our</b> Services <b style="color: yellow;">.</b></h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Web Development">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Mësuesi Virtual i Gjuhës Angleze</h5>
+                            <p style="color: grey;" class="card-text"> Mëso anglisht me një mësues 3D që flet, dëgjon dhe ndihmon falë inteligjencës artificiale. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Doktori Virtual</h5>
+                            <p style="color: grey;" class="card-text">Konsulto një mjek AI me avatar 3D që të ndihmon menjëherë për çdo shqetësim shëndetësor. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Cloud Solutions">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Programeri Virtual</h5>
+                            <p style="color: grey;" class="card-text"> Një ekspert AI në formë 3D që të ndihmon me kodin, bugjet dhe optimizimet teknike. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Eksperti i Karrierës Virtual</h5>
+                            <p style="color: grey;" class="card-text">Zbulo rrugën e duhur profesionale me ndihmën e një këshilltari AI 3D. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">IT për Teknologji</h5>
+                            <p style="color: grey;" class="card-text">Zgjidh çdo problem teknologjik me një specialist virtual 3D me fuqi AI. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Ekonomisti Virtual</h5>
+                            <p style="color: grey;" class="card-text">Menaxho financat me një këshilltar digjital 3D që analizon gjithçka me AI. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Eksperti i Udhëtimit Virtual</h5>
+                            <p style="color: grey;" class="card-text"> Planifiko pushimet me një udhërrëfyes AI në formë 3D që të çon kudo. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Trajneri i Fitnesit Virtual</h5>
+                            <p style="color: grey;" class="card-text">Stërvitu me një trajner personal virtual 3D që përdor AI për rezultate maksimale. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <div class="card-body text-center">
+                          <i class="fas fa-robot service-icon"></i>
+                            <h5 class="card-title mt-3">Mësuesi i Historisë & Kulturës Virtual</h5>
+                            <p style="color: grey;" class="card-text">Mëso historinë përmes një figure 3D ndërvepruese me dije të thella nga AI. </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+ <section class="about" id="about">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img width="2000" src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_639/https://sifoundry.com/wp-content/uploads/2022/12/360_F_506942009_k7MQ0DGWjaSl7khlrHdrdeoKxabEYPC3.jpeg" alt="About Us Image">
+      </div>
+      <div class="col-md-6">
+        <br>
+        <h2><b style="color: purple;">About</b> Us <b style="color: yellow;">.</b></h2>
+        <p><strong>Virtual World Kosova</strong> është një platformë novatore që sjell inteligjencën artificiale në jetë përmes avatarëve 3D interaktivë, të dizajnuar për të ndihmuar dhe edukuar në mënyrë realiste dhe njerëzore.</p>
+
+        <p style="color: grey;">Kemi krijuar një botë virtuale me personazhe 3D të mençur – nga mjekë virtualë, mësues gjuhe, programerë, trajnerë fitnesi e deri te ekspertë udhëtimesh dhe financash – të gjithë të pajisur me AI që kupton, përgjigjet dhe bashkëvepron si një njeri i vërtetë.</p>
+
+        <p>Qëllimi ynë është ta bëjmë teknologjinë të aksesueshme, edukative dhe argëtuese për të gjithë, duke sjellë në një vend ndihmë të personalizuar për shëndet, edukim, karrierë, IT, histori dhe më shumë – të gjitha përmes fuqisë së AI dhe avatarëve të gjallë 3D.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="text-center mb-4"><b style="color: purple;">Contact</b> Us <b style="color: yellow
+            ;">.</b></h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086540119137!2d-122.08424968468247!3d37.4220652798257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba022b6e0b0b%3A0xc93e3b098b1b7c63!2sGoogleplex!5e0!3m2!1sen!2sus!4v1637184974456!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Virtual World Kosova. All Rights Reserved. <a style="color: rgb(25, 194, 241);" href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
