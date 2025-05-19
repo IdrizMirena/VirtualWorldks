@@ -3,111 +3,472 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual World Kosova</title>
+    <title>Virtual World Kosova - AI-Powered 3D Avatars</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #ffcc00;
+            --dark-color: #092c50;
+            --light-color: #f8f9fa;
+        }
+        
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background-color: var(--dark-color) !important;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(9, 44, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .navbar-brand b:last-child {
+            color: var(--accent-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            padding: 8px 15px !important;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .hero {
-            background: url('https://prod.ucwe.capgemini.com/wp-content/uploads/2023/11/Embedded-software-banner-v4.jpg') no-repeat center center / cover;
+            background: linear-gradient(135deg, rgba(106,17,203,0.8), rgba(37,117,252,0.8)), 
+                        url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') no-repeat center center / cover;
             color: white;
             text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn-explore {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+        
+        .btn-explore:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .services {
+            padding: 100px 20px;
+            background-color: var(--light-color);
+        }
+
+        .service-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            margin: 20px 0;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card .card-body {
+            padding: 30px;
+        }
+
+        .service-card .card-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .service-card .card-text {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        .about {
             padding: 100px 20px;
             position: relative;
+            overflow: hidden;
         }
-        .hero::before {
+        
+        .about::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .hero * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .services {
-            padding: 60px 20px;
-        }
-
-        .service-card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-icon {
-            font-size: 50px;
-            color: #2575fc;
-        }
-
-        .about {
-            padding: 60px 20px;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9));
+            z-index: -1;
         }
 
         .about img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .about img:hover {
+            transform: scale(1.02);
         }
 
-        .about h2, .about p {
-            color: #343a40;
+        .about h2 {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 30px;
+        }
+        
+        .about p {
+            color: #495057;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .about p strong {
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         .contact {
-            padding: 60px 20px;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9));
         }
 
-        .contact h2 {
-            color: #343a40;
+        .contact .section-title {
+            color: var(--dark-color);
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .contact-info p {
+            margin-bottom: 25px;
+            color: #495057;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.25rem rgba(37, 117, 252, 0.25);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
         }
 
         footer {
-            background: #092c50;
+            background: linear-gradient(135deg, var(--dark-color), #041a36);
             color: white;
-            padding: 20px 0;
-            text-align: center;
+            padding: 50px 0 20px;
         }
-
-        footer a {
-            color: #6a11cb;
+        
+        .footer-links {
+            margin-bottom: 30px;
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .copyright a {
+            color: var(--accent-color);
             text-decoration: none;
         }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
 
-        footer a:hover {
-            text-decoration: underline;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn-explore {
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav style="background-color: #092c50;" class="navbar navbar-expand-lg navbar-dark bg-daarkblue">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><b style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Virutal</b> <b style="color: #2575fc;">World Kosova</b> <b style="color: yellow;">.</b></a>
+            <a class="navbar-brand" href="#"><b>Virtual</b> <b style="color: var(--secondary-color);">World Kosova</b> <b>.</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        
                         <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
@@ -117,8 +478,8 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                      <a style="color: rgb(150, 150, 91);" class="nav-link" href="/register">Sign In</a>
-                  </li>
+                        <a class="nav-link" href="/register" style="color: var(--accent-color);">Sign In</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -127,171 +488,186 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Welcome to <i style="color: gainsboro;">Virutal</i> <b style="color: #6a11cb;">World Kosova</b> <b style="color: yellow;">.</b></h1>
-            <p>Your one-stop solution for all your needs.</p>
-            <a style="background-color: #2574fc00; color: white;" href="#services" class="btn btn-light btn-lg">Explore Services</a>
+            <h1>Welcome to <i>Virtual</i> <b style="color: white;">World Kosova</b> <b>.</b></h1>
+            <p>Revolutionizing education and assistance with AI-powered 3D avatars</p>
+            <a href="#services" class="btn btn-explore">Explore Services</a>
         </div>
     </section>
 
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="text-center mb-4"><b style="color: purple;">Our</b> Services <b style="color: yellow;">.</b></h2>
+            <h2 class="text-center section-title">Our Services</h2>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Web Development">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=2071&auto=format&fit=crop" class="card-img-top" alt="English Teacher">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Mësuesi Virtual i Gjuhës Angleze</h5>
-                            <p style="color: grey;" class="card-text"> Mëso anglisht me një mësues 3D që flet, dëgjon dhe ndihmon falë inteligjencës artificiale. </p>
+                            <i class="fas fa-chalkboard-teacher service-icon"></i>
+                            <h5 class="card-title">Mësuesi Virtual i Gjuhës Angleze</h5>
+                            <p class="card-text">Mëso anglisht me një mësues 3D që flet, dëgjon dhe ndihmon falë inteligjencës artificiale.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Virtual Doctor">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Doktori Virtual</h5>
-                            <p style="color: grey;" class="card-text">Konsulto një mjek AI me avatar 3D që të ndihmon menjëherë për çdo shqetësim shëndetësor. </p>
+                            <i class="fas fa-user-md service-icon"></i>
+                            <h5 class="card-title">Doktori Virtual</h5>
+                            <p class="card-text">Konsulto një mjek AI me avatar 3D që të ndihmon menjëherë për çdo shqetësim shëndetësor.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Cloud Solutions">
+                        <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Virtual Programmer">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Programeri Virtual</h5>
-                            <p style="color: grey;" class="card-text"> Një ekspert AI në formë 3D që të ndihmon me kodin, bugjet dhe optimizimet teknike. </p>
+                            <i class="fas fa-code service-icon"></i>
+                            <h5 class="card-title">Programeri Virtual</h5>
+                            <p class="card-text">Një ekspert AI në formë 3D që të ndihmon me kodin, bugjet dhe optimizimet teknike.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop" class="card-img-top" alt="Career Expert">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Eksperti i Karrierës Virtual</h5>
-                            <p style="color: grey;" class="card-text">Zbulo rrugën e duhur profesionale me ndihmën e një këshilltari AI 3D. </p>
+                            <i class="fas fa-briefcase service-icon"></i>
+                            <h5 class="card-title">Eksperti i Karrierës Virtual</h5>
+                            <p class="card-text">Zbulo rrugën e duhur profesionale me ndihmën e një këshilltari AI 3D.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=2071&auto=format&fit=crop" class="card-img-top" alt="IT Support">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">IT për Teknologji</h5>
-                            <p style="color: grey;" class="card-text">Zgjidh çdo problem teknologjik me një specialist virtual 3D me fuqi AI. </p>
+                            <i class="fas fa-laptop-code service-icon"></i>
+                            <h5 class="card-title">IT për Teknologji</h5>
+                            <p class="card-text">Zgjidh çdo problem teknologjik me një specialist virtual 3D me fuqi AI.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Economist">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Ekonomisti Virtual</h5>
-                            <p style="color: grey;" class="card-text">Menaxho financat me një këshilltar digjital 3D që analizon gjithçka me AI. </p>
+                            <i class="fas fa-chart-line service-icon"></i>
+                            <h5 class="card-title">Ekonomisti Virtual</h5>
+                            <p class="card-text">Menaxho financat me një këshilltar digjital 3D që analizon gjithçka me AI.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1968&auto=format&fit=crop" class="card-img-top" alt="Travel Expert">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Eksperti i Udhëtimit Virtual</h5>
-                            <p style="color: grey;" class="card-text"> Planifiko pushimet me një udhërrëfyes AI në formë 3D që të çon kudo. </p>
+                            <i class="fas fa-plane service-icon"></i>
+                            <h5 class="card-title">Eksperti i Udhëtimit Virtual</h5>
+                            <p class="card-text">Planifiko pushimet me një udhërrëfyes AI në formë 3D që të çon kudo.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Fitness Trainer">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Trajneri i Fitnesit Virtual</h5>
-                            <p style="color: grey;" class="card-text">Stërvitu me një trajner personal virtual 3D që përdor AI për rezultate maksimale. </p>
+                            <i class="fas fa-dumbbell service-icon"></i>
+                            <h5 class="card-title">Trajneri i Fitnesit Virtual</h5>
+                            <p class="card-text">Stërvitu me një trajner personal virtual 3D që përdor AI për rezultate maksimale.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card service-card">
-                        <img src="https://th.bing.com/th/id/R.105c294522958dc0dd0d0f6e7adda5d5?rik=YF8pvGnNRhmuNQ&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5da0d7a42ae7d60e27334f91%2ft%2f5f5013ebacd8cc753ab831fb%2f1599083502157%2fThe%2bBenefits%2bof%2bSoftware%2bas%2ba%2bService.jpg%3fformat%3d1500w&ehk=LmIaU1yqh0PwZ1Gxys%2bS%2bDtM6nUctlrImTPRtGbsKL0%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Graphic Design">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="History Teacher">
                         <div class="card-body text-center">
-                          <i class="fas fa-robot service-icon"></i>
-                            <h5 class="card-title mt-3">Mësuesi i Historisë & Kulturës Virtual</h5>
-                            <p style="color: grey;" class="card-text">Mëso historinë përmes një figure 3D ndërvepruese me dije të thella nga AI. </p>
+                            <i class="fas fa-landmark service-icon"></i>
+                            <h5 class="card-title">Mësuesi i Historisë & Kulturës Virtual</h5>
+                            <p class="card-text">Mëso historinë përmes një figure 3D ndërvepruese me dije të thella nga AI.</p>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
 
     <!-- About Section -->
- <section class="about" id="about">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <img width="2000" src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_639/https://sifoundry.com/wp-content/uploads/2022/12/360_F_506942009_k7MQ0DGWjaSl7khlrHdrdeoKxabEYPC3.jpeg" alt="About Us Image">
-      </div>
-      <div class="col-md-6">
-        <br>
-        <h2><b style="color: purple;">About</b> Us <b style="color: yellow;">.</b></h2>
-        <p><strong>Virtual World Kosova</strong> është një platformë novatore që sjell inteligjencën artificiale në jetë përmes avatarëve 3D interaktivë, të dizajnuar për të ndihmuar dhe edukuar në mënyrë realiste dhe njerëzore.</p>
-
-        <p style="color: grey;">Kemi krijuar një botë virtuale me personazhe 3D të mençur – nga mjekë virtualë, mësues gjuhe, programerë, trajnerë fitnesi e deri te ekspertë udhëtimesh dhe financash – të gjithë të pajisur me AI që kupton, përgjigjet dhe bashkëvepron si një njeri i vërtetë.</p>
-
-        <p>Qëllimi ynë është ta bëjmë teknologjinë të aksesueshme, edukative dhe argëtuese për të gjithë, duke sjellë në një vend ndihmë të personalizuar për shëndet, edukim, karrierë, IT, histori dhe më shumë – të gjitha përmes fuqisë së AI dhe avatarëve të gjallë 3D.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop" alt="About Virtual World Kosova" class="img-fluid">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start">About Us</h2>
+                    <p><strong>Virtual World Kosova</strong> është një platformë novatore që sjell inteligjencën artificiale në jetë përmes avatarëve 3D interaktivë, të dizajnuar për të ndihmuar dhe edukuar në mënyrë realiste dhe njerëzore.</p>
+                    <p>Kemi krijuar një botë virtuale me personazhe 3D të mençur – nga mjekë virtualë, mësues gjuhe, programerë, trajnerë fitnesi e deri te ekspertë udhëtimesh dhe financash – të gjithë të pajisur me AI që kupton, përgjigjet dhe bashkëvepron si një njeri i vërtetë.</p>
+                    <p>Qëllimi ynë është ta bëjmë teknologjinë të aksesueshme, edukative dhe argëtuese për të gjithë, duke sjellë në një vend ndihmë të personalizuar për shëndet, edukim, karrierë, IT, histori dhe më shumë – të gjitha përmes fuqisë së AI dhe avatarëve të gjallë 3D.</p>
+                    <div class="d-flex mt-4">
+                        <div class="me-4">
+                            <h3 class="text-primary">50+</h3>
+                            <p>Virtual Experts</p>
+                        </div>
+                        <div class="me-4">
+                            <h3 class="text-primary">10K+</h3>
+                            <p>Happy Users</p>
+                        </div>
+                        <div>
+                            <h3 class="text-primary">24/7</h3>
+                            <p>Availability</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="text-center mb-4"><b style="color: purple;">Contact</b> Us <b style="color: yellow
-            ;">.</b></h2>
+            <h2 class="text-center section-title">Contact Us</h2>
             <div class="row">
-                <div class="col-md-6">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086540119137!2d-122.08424968468247!3d37.4220652798257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba022b6e0b0b%3A0xc93e3b098b1b7c63!2sGoogleplex!5e0!3m2!1sen!2sus!4v1637184974456!5m2!1sen!2sus" 
-                        width="100%" 
-                        height="300" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Rr. Nëna Terezë, Prishtinë, Kosovë</p>
+                        <p><i class="fas fa-phone"></i> +383 49 123 456</p>
+                        <p><i class="fas fa-envelope"></i> info@virtualworldkosova.com</p>
+                        <p><i class="fas fa-clock"></i> Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+                <div class="col-lg-7">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="subject" placeholder="Subject">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit">Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -300,10 +676,120 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Virtual World Kosova. All Rights Reserved. <a style="color: rgb(25, 194, 241);" href="#">Privacy Policy</a></p>
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-links">
+                        <h4>Virtual World Kosova</h4>
+                        <p>Revolutionizing education and assistance with AI-powered 3D avatars for all your needs.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h4>Links</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Virtual English Teacher</a></li>
+                            <li><a href="#">Virtual Doctor</a></li>
+                            <li><a href="#">Virtual Programmer</a></li>
+                            <li><a href="#">Career Expert</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Help Center</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                &copy; 2024 Virtual World Kosova. All Rights Reserved. <a href="#">Privacy Policy</a>
+            </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .about img, .contact-form, .contact-info');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.service-card, .about img, .contact-form, .contact-info').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+        });
+
+        // Run animation on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
