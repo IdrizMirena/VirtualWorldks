@@ -3,12 +3,11 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 
-const users = []; // { email, username, password }
+const users = []; // Ruajmë { email, username, password }
 
-// Middleware për të mbrojtur rruget
+// Middleware për autentikim
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
-
   if (!token) return res.redirect('/login');
 
   try {
@@ -21,18 +20,29 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-// ===== ROUTES =====
+// Home page
+router.get('/', (req, res) => {
+  res.render('home');
+});
 
-// sistemet
-router.get('/', (req, res) => res.render('home'));
+// Login page
+router.get('/login', (req, res) => {
+  res.render('login', { loginError: null });
+});
 
-// Register
-router.get('/register', (req, res) => res.render('register'));
+// Register page
+router.get('/register', (req, res) => {
+  res.render('register', { registerError: null });
+});
+
+// Register POST
 router.post('/register', async (req, res) => {
   const { email, username, password } = req.body;
 
   const userExists = users.find(u => u.username === username);
-  if (userExists) return res.send('Username already taken');
+  if (userExists) {
+    return res.render('register', { registerError: 'Username already taken' });
+  }
 
   const hashed = await bcrypt.hash(password, 10);
   users.push({ email, username, password: hashed });
@@ -40,24 +50,18 @@ router.post('/register', async (req, res) => {
   res.redirect('/login');
 });
 
-// Login
-router.get('/login', (req, res) => res.render('login'));
+// Login POST
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username);
   if (!user || !(await bcrypt.compare(password, user.password))) {
-    return res.send('Invalid credentials');
+    return res.render('login', { loginError: 'Invalid credentials' });
   }
 
-  const token = jwt.sign({ username: user.username }, "supersekret123", {
-    expiresIn: '1h',
-  });
+  const token = jwt.sign({ username: user.username }, "supersekret123", { expiresIn: '1h' });
 
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: false, // vendose true në produksion me HTTPS
-  });
+  res.cookie('token', token, { httpOnly: true, secure: false });
 
   res.redirect('/sistemet');
 });
@@ -68,7 +72,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-// Protected Routes
+// Protected routes (vetëm për shembull, përdor verifyToken)
 router.get('/sistemet', verifyToken, (req, res) => res.render('sistemet'));
 router.get('/doctor', verifyToken, (req, res) => res.render('doctor'));
 router.get('/teacher', verifyToken, (req, res) => res.render('teacher'));
@@ -79,6 +83,5 @@ router.get('/historiku', verifyToken, (req, res) => res.render('historiku'));
 router.get('/it', verifyToken, (req, res) => res.render('it'));
 router.get('/trajneri', verifyToken, (req, res) => res.render('trajneri'));
 router.get('/udhetimi', verifyToken, (req, res) => res.render('udhetimi'));
-
 
 module.exports = router;
