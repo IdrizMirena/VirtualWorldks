@@ -26,6 +26,10 @@
 
       <!-- Pills content -->
       <div class="tab-content">
+        
+            <% if (loginError) { %>
+          <div class="alert alert-danger text-center"><%= loginError %></div>
+        <% } %>
         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
           <form action="/login" method="POST">
             <div class="text-center mb-3">
