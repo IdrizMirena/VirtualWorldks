@@ -27,6 +27,9 @@
   
       <!-- Pills content -->
       <div class="tab-content">
+                <% if (registerError) { %>
+          <div class="alert alert-danger text-center"><%= registerError %></div>
+        <% } %>
         <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
           <form action="/register" method="POST">
             <div class="text-center mb-3">
