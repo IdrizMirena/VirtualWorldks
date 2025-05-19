@@ -3,196 +3,241 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dokumentimi i Aplikacionit</title>
+  <title>Trajneri fitnesit Virtual</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #4e73df;
+      --primary-light: #e6e9f9;
       --secondary-color: #1cc88a;
+      --secondary-light: #e0f8ef;
       --dark-color: #2c3e50;
       --light-color: #f8f9fc;
       --accent-color: #f6c23e;
+      --accent-light: #fef6e0;
       --danger-color: #e74a3b;
+      --danger-light: #fbe9e7;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     
     body {
       background-color: #f8f9fc;
       font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       overflow-x: hidden;
+      color: #4a4a4a;
+      line-height: 1.6;
     }
 
-    /* Sidebar Styling */
+    /* Sidebar Styling - Redesign */
     #sidebar {
-      min-width: 250px;
-      max-width: 250px;
-      background: linear-gradient(180deg, var(--primary-color) 40%, #0000006f 100%);
+      min-width: 280px;
+      max-width: 280px;
+      background: linear-gradient(180deg, #1a237e 0%, #4e73df 100%);
       color: white;
-      transition: all 0.3s;
+      transition: var(--transition);
       min-height: 100vh;
       position: fixed;
-      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
     }
 
     #sidebar .sidebar-header {
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.2);
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #sidebar .sidebar-header h4 {
+      font-weight: 700;
+      margin-bottom: 5px;
+      font-size: 1.3rem;
+    }
+
+    #sidebar .sidebar-header p {
+      opacity: 0.8;
+      font-size: 0.85rem;
     }
 
     #sidebar ul.components {
-      padding: 20px 0;
+      padding: 15px 0;
     }
 
     #sidebar ul li a {
-      padding: 12px 20px;
-      font-size: 1em;
-      display: block;
-      color: rgba(255, 255, 255, 0.8);
-      transition: all 0.3s;
+      padding: 12px 25px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.85);
+      transition: var(--transition);
+      border-left: 3px solid transparent;
     }
 
     #sidebar ul li a:hover {
       color: white;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       text-decoration: none;
+      border-left: 3px solid var(--accent-color);
     }
 
     #sidebar ul li.active > a {
       color: white;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+      border-left: 3px solid white;
+      font-weight: 600;
     }
 
-    /* Navbar Styling */
+    #sidebar ul li a i {
+      margin-right: 10px;
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    #sidebar .dropdown-toggle::after {
+      display: block;
+      position: absolute;
+      right: 25px;
+      transform: translateY(-50%);
+    }
+
+    #sidebar ul ul li a {
+      padding: 10px 15px 10px 45px;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Navbar Styling - Redesign */
     .navbar {
       background-color: white;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-      padding: 0.5rem 1rem;
+      box-shadow: 0 0.25rem 1.25rem 0 rgba(58, 59, 69, 0.1);
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
     .navbar-brand {
       font-weight: 800;
       color: var(--dark-color);
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
     }
 
-    /* Main Content */
+    .navbar-brand i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+
+    /* Main Content - Redesign */
     #content {
-      width: calc(100% - 250px);
-      padding: 20px;
+      width: calc(100% - 280px);
+      padding: 30px;
       min-height: 100vh;
-      transition: all 0.3s;
+      transition: var(--transition);
       position: absolute;
       top: 0;
       right: 0;
     }
 
-    /* Cards */
+    /* Cards - Redesign */
     .card {
       border: none;
-      border-radius: 0.35rem;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-      margin-bottom: 20px;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.25rem 1.25rem 0 rgba(58, 59, 69, 0.08);
+      margin-bottom: 30px;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .card:hover {
+      box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.15);
+      transform: translateY(-2px);
     }
 
     .card-header {
-      background-color: #f8f9fc;
-      border-bottom: 1px solid #e3e6f0;
-      padding: 1rem 1.35rem;
-      border-radius: 0.35rem 0.35rem 0 0 !important;
+      background-color: white;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0.5rem 0.5rem 0 0 !important;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-header i {
+      margin-right: 10px;
+      font-size: 1.2rem;
     }
 
     .card-body {
-      padding: 1.5rem;
+      padding: 1.75rem;
     }
 
-    /* Hero Section */
+    /* Hero Section - Redesign */
     .hero {
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)),
+      background: linear-gradient(135deg, rgba(30, 50, 150, 0.85), rgba(80, 120, 220, 0.9)),
                   url('https://as1.ftcdn.net/v2/jpg/04/29/35/62/1000_F_429356296_CVQ5LkC6Pl55kUNLqLisVKgTw9vjyif1.jpg') no-repeat center center/cover;
       color: white;
-      min-height: 250px;
+      min-height: 300px;
       display: flex;
       align-items: center;
-      border-radius: 0.35rem;
-      margin-bottom: 30px;
+      border-radius: 0.5rem;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
     }
 
     .hero-content {
-      padding: 2rem;
+      padding: 3rem;
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
     }
 
-    /* Section Styling */
-    .section {
-      margin-bottom: 30px;
+    .hero h1 {
+      font-weight: 800;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    .section-title {
-      color: var(--primary-color);
-      font-weight: 700;
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
       margin-bottom: 1.5rem;
-      position: relative;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
-    .section-title:after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--primary-color);
-      margin-top: 10px;
+    /* Badges - Redesign */
+    .badge {
+      padding: 0.5em 0.8em;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
     }
 
-    /* Code Block */
-    .code-block {
-      background-color: #2c3e50;
-      color: #f8f9fa;
-      padding: 1rem;
-      border-radius: 0.35rem;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 15px 0;
+    .badge i {
+      margin-right: 5px;
     }
 
-    /* List Styling */
-    .feature-list li {
-      margin-bottom: 10px;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    .feature-list li:before {
-      content: "\f00c";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: var(--secondary-color);
-    }
-
-    /* Footer */
-    .footer {
-      background-color: white;
-      padding: 1.5rem;
-      text-align: center;
-      border-top: 1px solid #e3e6f0;
-      margin-top: 30px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      #sidebar {
-        margin-left: -250px;
-      }
-      #sidebar.active {
-        margin-left: 0;
-      }
-      #content {
-        width: 100%;
-      }
-      #content.active {
-        width: calc(100% - 250px);
-      }
-    }
-
-    /* Badges */
     .badge-primary {
       background-color: var(--primary-color);
     }
@@ -201,22 +246,261 @@
     }
     .badge-warning {
       background-color: var(--accent-color);
+      color: #333;
     }
     .badge-danger {
       background-color: var(--danger-color);
     }
 
-    /* Icons */
+    /* Section Styling - Redesign */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 1.75rem;
+      position: relative;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title i {
+      margin-right: 12px;
+    }
+
+    .section-title:after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      margin-top: 15px;
+      border-radius: 2px;
+    }
+
+    /* Code Block - Redesign */
+    .code-block {
+      background-color: #1e293b;
+      color: #f8f9fa;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      margin: 20px 0;
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .code-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* List Styling - Redesign */
+    .feature-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .feature-list li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 35px;
+      line-height: 1.6;
+    }
+
+    .feature-list li:before {
+      content: "\f00c";
+      font-family: "bootstrap-icons";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: var(--secondary-color);
+      background: var(--secondary-light);
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* Alert - Redesign */
+    .alert {
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+      border-left: 4px solid;
+    }
+
+    .alert i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .alert-primary {
+      background-color: var(--primary-light);
+      border-color: var(--primary-color);
+      color: var(--dark-color);
+    }
+
+    .alert-info {
+      background-color: #e6f3ff;
+      border-color: #4dabf7;
+      color: #1864ab;
+    }
+
+    /* Icons - Redesign */
     .icon-circle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 2.5rem;
-      width: 2.5rem;
-      border-radius: 100%;
+      height: 3rem;
+      width: 3rem;
+      border-radius: 50%;
       background-color: rgba(78, 115, 223, 0.1);
       color: var(--primary-color);
       margin-right: 1rem;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .icon-circle:hover {
+      transform: scale(1.1);
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* Footer - Redesign */
+    .footer {
+      background-color: white;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      margin-top: 50px;
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+
+    .footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive - Redesign */
+    @media (max-width: 992px) {
+      #sidebar {
+        margin-left: -280px;
+      }
+      #sidebar.active {
+        margin-left: 0;
+      }
+      #content {
+        width: 100%;
+      }
+      #content.active {
+        width: 100%;
+        margin-left: 280px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 250px;
+      }
+      
+      .hero-content {
+        padding: 2rem;
+      }
+      
+      .card-body {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3a5bc7;
+    }
+    
+    /* Tooltip */
+    [data-bs-toggle="tooltip"] {
+      cursor: pointer;
+    }
+    
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(78, 115, 223, 0.3);
+      z-index: 100;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .fab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(78, 115, 223, 0.4);
+    }
+    
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
   </style>
 </head>
@@ -224,256 +508,662 @@
   <div class="wrapper d-flex">
     <!-- Sidebar -->
     <nav id="sidebar">
-      <div class="sidebar-header text-center">
-        <h4>Trajneri Virtual</h4>
-        <p class="mb-0">Dokumentacioni</p>
+      <div class="sidebar-header">
+        <h4><i class="bi bi-robot"></i> Trajneri fitnesit Virtual</h4>
+        <p>Dokumentacioni i Plotë</p>
       </div>
 
       <ul class="list-unstyled components">
         <li class="active">
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="bi bi-house-door mr-2"></i> Fillimi
+          <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="bi bi-house-door"></i> Fillimi
           </a>
-          <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li><a href="#introduction"><i class="bi bi-chevron-right mr-2"></i> Hyrje</a></li>
-            <li><a href="#features"><i class="bi bi-chevron-right mr-2"></i> Karakteristikat</a></li>
+          <ul class="collapse list-unstyled show" id="homeSubmenu">
+            <li><a href="#introduction" class="active"><i class="bi bi-chevron-right"></i> Hyrje</a></li>
+            <li><a href="#features"><i class="bi bi-chevron-right"></i> Karakteristikat</a></li>
           </ul>
         </li>
         <li>
           <a href="#systems">
-            <i class="bi bi-grid mr-2"></i> Sistemet
+            <i class="bi bi-grid"></i> Sistemet
           </a>
         </li>
         <li>
           <a href="#doctor-system">
-            <i class="bi bi-robot mr-2"></i>Trajneri
+            <i class="bi bi-robot"></i> Sistemi i Trajnerit fitnesit Virtual
           </a>
         </li>
- 
+        <li>
+          <a href="#faq">
+            <i class="bi bi-question-circle"></i> Pyetjet e Bëra Shpesht
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <i class="bi bi-headset"></i> Kontakti
+          </a>
+        </li>
       </ul>
+      
+      <div class="sidebar-footer p-3 text-center">
+        <small class="text-white-50">Versioni 2.1.0</small>
+      </div>
     </nav>
 
     <!-- Page Content -->
     <div id="content">
       <!-- Top Navigation -->
       <nav class="navbar navbar-expand-lg">
-        <div class="ms-auto">
-            <a href="/sistemet" class="btn btn-outline-primary">
-              <i class="bi bi-arrow-left"></i> Kthehu te aplikacioni
+        <div class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="btn btn-outline-primary me-3 d-lg-none">
+            <i class="bi bi-list"></i>
+          </button>
+          
+          <div class="ms-auto">
+            <a href="/sistemet" class="btn btn-primary">
+              <i class="bi bi-arrow-left-circle me-2"></i> Kthehu te aplikacioni
             </a>
           </div>
+        </div>
       </nav>
 
       <!-- Hero Section -->
-      <div class="hero">
+      <div class="hero fade-in">
         <div class="hero-content">
-          <h1 class="display-5 fw-bold">Dokumentacioni i Trajnerit Virtual</h1>
-          <p class="lead">Mësoni si të përdorni platformën tonë me efikasitet maksimal</p>
-          <span class="badge bg-primary me-2"><i class="bi bi-star-fill me-1"></i> E re</span>
-          <span class="badge bg-success me-2"><i class="bi bi-lightning-fill me-1"></i> E shpejtë</span>
-          <span class="badge bg-warning"><i class="bi bi-shield-fill me-1"></i> E sigurtë</span>
+          <h1>Dokumentacioni i <span class="gradient-text">Trajneri fitnesit Virtual</span></h1>
+          <p>Zbuloni të gjitha funksionalitetet dhe mësoni si të përdorni platformën tonë me efikasitet maksimal për të përmirësuar praktikën tuaj mesimore.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-primary"><i class="bi bi-star-fill me-1"></i> E re</span>
+            <span class="badge bg-success"><i class="bi bi-lightning-fill me-1"></i> E shpejtë</span>
+            <span class="badge bg-warning"><i class="bi bi-shield-fill me-1"></i> E sigurtë</span>
+            <span class="badge bg-danger"><i class="bi bi-robot me-1"></i> AI Powered</span>
+          </div>
         </div>
       </div>
 
       <!-- Main Content -->
       <div class="container-fluid">
         <!-- Introduction Section -->
-<div class="card section" id="introduction">
-  <div class="card-header">
-    <h3 class="section-title"><i class="bi bi-info-circle-fill me-2"></i> Hyrje në Platformë</h3>
-  </div>
-  <div class="card-body">
-    <p>Trajneri Virtual është një asistent inteligjent i krijuar për të ndihmuar individët në përmirësimin e shëndetit fizik, mirëqenies dhe performancës personale. Ai ofron plane stërvitore të personalizuara, këshilla për ushqim të shëndetshëm dhe udhëzime strategjike për të arritur qëllimet tuaja të fitnesit.</p>
-    <ul class="feature-list">
-      <li>- Plane stërvitore të përshtatura – Sugjeron programe ushtrimesh bazuar në nivelin tuaj të përgatitjes fizike, qëllimet individuale dhe preferencat personale.</li>
-      <li>- Këshilla për stilin e jetesës – Ofron udhëzime mbi ushqimin e balancuar, rutinat ditore, dhe teknika për menaxhimin e stresit dhe përmirësimin e gjumit.</li>
-      <li>- Monitorim dhe progres – Ndihmon në ndjekjen e progresit tuaj, vlerëson performancën dhe sugjeron përmirësime të vazhdueshme për të arritur rezultate të qëndrueshme.</li>
-    </ul>
-    <div class="alert alert-primary">
-      <i class="bi bi-lightbulb-fill me-2"></i> <strong>Këshillë:</strong> Përdorni menunë anësore për të eksploruar module mbi stërvitjen, ushqimin e shëndetshëm, vetëvlerësimin fizik dhe strategjitë për përmirësimin e mirëqenies.
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-        <!-- Authentication Section -
-        <div class="card section" id="authentication">
+        <div class="card section fade-in" id="introduction">
           <div class="card-header">
-            <h3 class="section-title"><i class="bi bi-shield-lock me-2"></i> 1. Perdorimi</h3>
+            <i class="bi bi-info-circle-fill"></i>
+            <h3 class="section-title mb-0">Hyrje në Platformë</h3>
           </div>
           <div class="card-body">
-            <p>Për të përdorur asistentin, së pari duhet të lexoni me kujdes te gjitha instrukcionet e dhena !</p>
+            <p class="lead">Trajneri Virtual është një asistent inteligjent i krijuar për të ndihmuar individët në përmirësimin e shëndetit fizik, mirëqenies dhe performancës personale. Ai ofron plane stërvitore të personalizuara, këshilla për ushqim të shëndetshëm dhe udhëzime strategjike për të arritur qëllimet tuaja të fitnesit.</p>
             
-            <div class="row">
-              
-              <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                  <div class="card-header bg-primary text-white">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Hyrja në Sistem
-                  </div>
+            <p>Ai vepron si një ndihmës virtual, duke ofruar funksionalitete të avancuara për përmirësimin e efikasitetit në praktikën dhe kujdesin ndaj perderuesve. Platforma jonë kombinon teknologjinë më të fundit me njohuritë mjekësore për të ofruar një përvojë të përsosur për të gjithë përdoruesit.</p>
+            
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
                   <div class="card-body">
-                    <p>Përdoruesit ekzistues mund të hyjnë duke përdorur kredencialet e tyre:</p>
-                    <ul>
-                      <li>Emri i përdoruesit ose email</li>
-                      <li>Fjalëkalimi</li>
-                    </ul>
-                    <div class="code-block">
-                      URL: /login<br>
-                      Metoda: POST<br>
-                      Parametrat: username, password
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="icon-circle">
+                        <i class="bi bi-people"></i>
+                      </div>
+                      <h5 class="mb-0">Për Trajnerin fitnesit Virtual</h5>
                     </div>
+                    <p>Plane stërvitore të përshtatura – Sugjeron programe ushtrimesh bazuar në nivelin tuaj të përgatitjes fizike, qëllimet individuale dhe preferencat personale.</p>
                   </div>
                 </div>
               </div>
               
-              <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                  <div class="card-header bg-success text-white">
-                    <i class="bi bi-person-plus me-2"></i> Regjistrimi i Ri
-                  </div>
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
                   <div class="card-body">
-                    <p>Përdoruesit e rinj mund të krijojnë një llogari të re:</p>
-                    <ul>
-                      <li>Emri i plotë</li>
-                      <li>Email</li>
-                      <li>Emri i përdoruesit</li>
-                      <li>Fjalëkalimi</li>
-                      <li>Konfirmimi i fjalëkalimit</li>
-                    </ul>
-                    <div class="code-block">
-                      URL: /register<br>
-                      Metoda: POST<br>
-                      Parametrat: name, email, username, password, password_confirmation
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="icon-circle">
+                        <i class="bi bi-people"></i>
+                      </div>
+                      <h5 class="mb-0">Për perderues</h5>
                     </div>
+                    <p>Monitorim dhe progres – Ndihmon në ndjekjen e progresit tuaj, vlerëson performancën dhe sugjeron përmirësime të vazhdueshme për të arritur rezultate të qëndrueshme.</p>
                   </div>
                 </div>
               </div>
             </div>
+            
+            <div class="alert alert-primary mt-4">
+              <i class="bi bi-lightbulb-fill"></i> 
+              <div>
+                <strong>Këshillë:</strong> Përdorni menunë anësore për të lëvizur shpejt në seksionet e ndryshme të dokumentacionit. Ju gjithashtu mund të përdorni butonin e kërkimit në krye të faqes për të gjetur shpejt informacionin që kërkoni.
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
+
+        <!-- Features Section -->
+        <div class="card section fade-in delay-1" id="features">
+          <div class="card-header">
+            <i class="bi bi-list-check"></i>
+            <h3 class="section-title mb-0">Karakteristikat Kryesore</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4 mb-4">
+                <div class="feature-card p-4 h-100 rounded">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="icon-circle">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <h5 class="mb-0">Menaxhimi i Termave</h5>
+                  </div>
+                  <p>Organizoni dhe menaxhoni takimet tuaja me pacientët në mënyrë efikase me kalendarin tonë inteligjent që parandalon mbivendosjet dhe dërgon kujtesa automatikisht.</p>
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Programim i lehtë i takimeve</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Kujtesa automatik për pacientët</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Integrim me Google Calendar</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="col-lg-4 mb-4">
+                <div class="feature-card p-4 h-100 rounded">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="icon-circle">
+                      <i class="bi bi-file-earmark-medical"></i>
+                    </div>
+                    <h5 class="mb-0">Historia Mesimore</h5>
+                  </div>
+                  <p>Ruani dhe aksesoni lehtësisht të dhënat e perderuesve, recetat, rezultatet e testeve dhe të gjithë historikun mesimor në një vend të sigurt dhe të organizuar.</p>
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Arkivim i sigurt në cloud</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Kërkim i shpejtë</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Eksport në PDF</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="col-lg-4 mb-4">
+                <div class="feature-card p-4 h-100 rounded">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="icon-circle">
+                      <i class="bi bi-chat-left-text"></i>
+                    </div>
+                    <h5 class="mb-0">Konsultime Virtuale</h5>
+                  </div>
+                  <p>Kryeni konsultime në distancë me pacientët tuaj përmes platformës sonë të sigurt, me mundësi video, audio dhe chat në kohë reale.</p>
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Video konferencë HD</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Chat në kohë reale</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Regjistrim i sesioneve</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="alert alert-info mt-3">
+              <i class="bi bi-info-circle-fill"></i>
+              <div>
+                <strong>E re:</strong> Tani mund të përdorni asistentin tonë të bazuar në AI për të analizuar të dhënat e pacientëve dhe për të ofruar sugjerime bazuar në praktikat më të mira klinike.
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Systems Section -->
-        <div class="card section" id="systems">
+        <div class="card section fade-in delay-2" id="systems">
           <div class="card-header">
-            <h3 class="section-title"><i class="bi bi-grid me-2"></i> 2. Sistemet e ketije asistenti Virutal</h3>
+            <i class="bi bi-grid"></i>
+            <h3 class="section-title mb-0">Sistemet e Asistentit Virtual</h3>
           </div>
           <div class="card-body">
-            <p>Pas hyrjes në sistem, ju do të haseni me funksionet e Trajnerit Virtual:</p>
+            <p>Pas hyrjes në sistem, ju do të haseni me funksionet e mesues virtual:</p>
             
-            <div class="row text-center">
-              <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="icon-circle mx-auto mb-3">
-                      <i class="bi bi-robot mr-2"></i>
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-shadow">
+                  <div class="card-body text-center">
+                    <div class="icon-circle mx-auto mb-3 bg-primary-light">
+                      <i class="bi bi-robot text-primary"></i>
                     </div>
-                    <h5>Trajnerit Virtual</h5>
-                    <p>Menaxhon eksperiencen, termat dhe konsultatat mesimore</p>
-                    <span class="badge bg-primary">💪</span>
+                    <h5>Sistemi i Trajnerit fitnesit Virtual</h5>
+                    <p>Menaxhoni perderusit, termat dhe konsultatat mesimore me vegla të specializuara</p>
+                    <div class="mt-3">
+                      <span class="badge bg-primary">Mesim</span>
+                      <span class="badge bg-secondary">Menaxhim</span>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-transparent border-top-0 text-center">
+                    <a href="#doctor-system" class="btn btn-sm btn-outline-primary">Mëso më shumë</a>
                   </div>
                 </div>
               </div>
               
-              <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="icon-circle mx-auto mb-3">
-                      <i class="bi bi-robot mr-2"></i>
+              <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-shadow">
+                  <div class="card-body text-center">
+                    <div class="icon-circle mx-auto mb-3 bg-success-light">
+                      <i class="bi bi-lightbulb text-success"></i>
                     </div>
-                    <h5>Trajnerit Virtual</h5>
-                    <p>Sugjeron per nderrmarje te sakta dhe ne kohe te duhur</p>
-                    <span class="badge bg-success">💪</span>
+                    <h5>Sugjerime Inteligjente</h5>
+                    <p>Sugjeron për ndërmarrje të sakta dhe në kohën e duhur bazuar në të dhënat</p>
+                    <div class="mt-3">
+                      <span class="badge bg-success">AI</span>
+                      <span class="badge bg-info">Analizë</span>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-transparent border-top-0 text-center">
+                    <a href="#" class="btn btn-sm btn-outline-success">Mëso më shumë</a>
                   </div>
                 </div>
               </div>
               
-              <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="icon-circle mx-auto mb-3">
-                      <i class="bi bi-robot mr-2"></i>
+              <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-shadow">
+                  <div class="card-body text-center">
+                    <div class="icon-circle mx-auto mb-3 bg-warning-light">
+                      <i class="bi bi-prescription text-warning"></i>
                     </div>
-                    <h5>Trajnerit Virtual</h5>
-                    <p>Udhezon drejt shendetit dhe suksesit </p>
-                    <span class="badge bg-warning text-dark">💪</span>
+                    <h5>Udhëzime Mesimore</h5>
+                    <p>Udhëzon drejt zgjedhjes dhe ofron udhëzime për mesime në rast nevoje</p>
+                    <div class="mt-3">
+                      <span class="badge bg-warning text-dark">Sugjerim</span>
+                      <span class="badge bg-danger">Urgjencë</span>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-transparent border-top-0 text-center">
+                    <a href="#" class="btn btn-sm btn-outline-warning">Mëso më shumë</a>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div class="alert alert-info mt-4">
-              <i class="bi bi-info-circle-fill me-2"></i> Ju mund të kaloni midis sistemeve në çdo kohë duke përdorur menunë kryesore në krye të faqes.
+            <div class="alert alert-primary mt-4">
+              <i class="bi bi-arrow-left-right"></i>
+              <div>
+                <strong>Tip:</strong> Ju mund të kaloni midis sistemeve në çdo kohë duke përdorur menunë kryesore në krye të faqes ose tastierën e shkurtoreve (Ctrl+1, Ctrl+2, etj).
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Doctor System Section -->
-        <div class="card section" id="doctor-system">
+        <div class="card section fade-in delay-3" id="doctor-system">
           <div class="card-header">
-            <h3 class="section-title"><i class="bi bi-robot mr-2"></i> 3. Si te aktivizojme Trajnerin Virtual</h3>
+            <i class="bi bi-heart-pulse"></i>
+            <h3 class="section-title mb-0">Si të aktivizojmë Sistemin e Trajnerit fitnesit Virtual</h3>
           </div>
           <div class="card-body">
-            <p>Sistemi i Programerit ofron të gjitha mjetet e nevojshme për menaxhimin e një praktike mesimore:</p>
+            <p>Sistemi i Trajnerit fitnesit Virtual ofron të gjitha mjetet e nevojshme për menaxhimin e një praktike mesimore:</p>
             
-            <div class="row">
+            <div class="row g-4 mb-4">
               <div class="col-md-6">
-                <h5><i class="bi bi-people-fill text-primary me-2"></i> Menaxhimi i udhetimeve</h5>
-                <ul>
-                  <li>Regjistrimi i personave të rinj</li>
-                  <li>Përditësimi i të dhënave të personave</li>
-                  <li>Historia personave</li>
-                  <li>Kërkimi i personave</li>
-                </ul>
+                <div class="card h-100 border-primary">
+                  <div class="card-header bg-primary text-white">
+                    <i class="bi bi-people-fill me-2"></i> Menaxhimi i perderuesve
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-unstyled">
+                      <li class="mb-3 d-flex">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>
+                          <strong>Regjistrimi i perderuesve të rinj</strong>
+                          <p class="mb-0 text-muted">Shtoni perderues të rinj me të gjitha të dhënat e nevojshme mesimore</p>
+                        </div>
+                      </li>
+                      <li class="mb-3 d-flex">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>
+                          <strong>Përditësimi i të dhënave</strong>
+                          <p class="mb-0 text-muted">Përditësoni informacionin e perderuesve ekzistues në çdo kohë</p>
+                        </div>
+                      </li>
+                      <li class="d-flex">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>
+                          <strong>Historia mesimore</strong>
+                          <p class="mb-0 text-muted">Aksesoni të gjithë historikun perderuesve të pacientit në një vend</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
+              
               <div class="col-md-6">
-                <h5><i class="bi bi-calendar-check text-primary me-2"></i> Menaxhimi i Termave</h5>
-                <ul>
-                  <li>Programimi i termineve të reja</li>
-                  <li>Shikimi i kalendarit</li>
-                  <li>Njoftimet për terminet</li>
-                  <li>Anulimi i termineve</li>
-                </ul>
+                <div class="card h-100 border-success">
+                  <div class="card-header bg-success text-white">
+                    <i class="bi bi-calendar-check me-2"></i> Menaxhimi i Termave
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-unstyled">
+                      <li class="mb-3 d-flex">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>
+                          <strong>Programimi i termineve</strong>
+                          <p class="mb-0 text-muted">Planifikoni takime të reja me perderues me disa klikime</p>
+                        </div>
+                      </li>
+                      <li class="mb-3 d-flex">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>
+                          <strong>Shikimi i kalendarit</strong>
+                          <p class="mb-0 text-muted">Shikoni orarin tuaj në pamje ditore, javore ose mujore</p>
+                        </div>
+                      </li>
+                      <li class="d-flex">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>
+                          <strong>Njoftimet</strong>
+                          <p class="mb-0 text-muted">Pranoni njoftime për terminet e ardhshme</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <div class="mt-4">
-              <h5><i class="bi bi-file-earmark-medical text-primary me-2"></i> Konsultatat mesimore</h5>
-              <p>Aktivizo Tani:</p>
-              <div class="code-block">
-  <!-- Udhëzim për të aktivizuar konsultimin me modelin AI -->
-  - ✅ Zgjidh problemin ose hallin tënd që dëshiron të diskutosh<br>
-  - 🎙️ Aktivizo mikrofonin që modeli të dëgjojë zërin tënd<br>
-  - 🤖 Fillo të flasësh dhe shpjego problemin me qetësi dhe saktësi<br>
-  - 🛑 Kur të përfundosh, ndalo mikrofonin<br>
-  - 🟦 Në anën e djathtë, kliko katrorin për të përfunduar sesionin<br><br>
-  👉 Le të fillojmë?
-</div>
+            <h5 class="d-flex align-items-center mt-4 mb-3">
+              <i class="bi bi-file-earmark-medical text-primary me-2"></i> Konsultatat Mesimore
+            </h5>
+            <p>Aktivizo Tani:</p>
+            
+            <div class="code-block">
+              <h6 class="text-white mb-3"><i class="bi bi-robot"></i> Udhëzime për Aktivizimin e Konsultimit me AI</h6>
+              <div class="d-flex mb-2">
+                <div class="text-success me-3">✅</div>
+                <div>Zgjidh problemin ose hallin tënd që dëshiron të diskutosh</div>
+              </div>
+              <div class="d-flex mb-2">
+                <div class="text-success me-3">🎙️</div>
+                <div>Aktivizo mikrofonin që modeli të dëgjojë zërin tënd</div>
+              </div>
+              <div class="d-flex mb-2">
+                <div class="text-success me-3">🗣️</div>
+                <div>Fillo të flasësh dhe shpjego problemin me qetësi dhe saktësi</div>
+              </div>
+              <div class="d-flex mb-2">
+                <div class="text-success me-3">🛑</div>
+                <div>Kur të përfundosh, ndalo mikrofonin</div>
+              </div>
+              <div class="d-flex">
+                <div class="text-success me-3">🟦</div>
+                <div>Në anën e djathtë, kliko katrorin për të përfunduar sesionin</div>
+              </div>
+              <div class="mt-3 pt-2 border-top border-secondary">
+                <strong class="text-info">👨⚕️ Këshilla profesionale:</strong> Për rezultate më të sakta, përshkruani simptomat në detaje dhe përmendni çdo informacion të rëndësishëm mesimore.
+              </div>
+            </div>
+            
+            <div class="row mt-4 g-4">
+              <div class="col-md-6">
+                <div class="card border-0 bg-light">
+                  <div class="card-body">
+                    <h5 class="d-flex align-items-center">
+                      <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Çfarë të Evitoni
+                    </h5>
+                    <ul class="list-unstyled">
+                      <li class="mb-2"><i class="bi bi-x-circle-fill text-danger me-2"></i> Mos përdorni gjuhë të paqartë</li>
+                      <li class="mb-2"><i class="bi bi-x-circle-fill text-danger me-2"></i> Mos anashkaloni simptomat kryesore</li>
+                      <li class="mb-2"><i class="bi bi-x-circle-fill text-danger me-2"></i> Mos bëni vetë-diagnostikim</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="card border-0 bg-light">
+                  <div class="card-body">
+                    <h5 class="d-flex align-items-center">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i> Çfarë të Bëni
+                    </h5>
+                    <ul class="list-unstyled">
+                      <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Përshkruani simptomat në detaje</li>
+                      <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Përmendni alergjitë ose ilaçet aktuale</li>
+                      <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Përdorni terminologjinë e saktë</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- FAQ Section -->
+        <div class="card section" id="faq">
+          <div class="card-header">
+            <i class="bi bi-question-circle"></i>
+            <h3 class="section-title mb-0">Pyetjet e Bëra Shpesht</h3>
+          </div>
+          <div class="card-body">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item border-0 mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Si mund të regjistrohem në platformë?
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p>Regjistrimi është shumë i thjeshtë:</p>
+                    <ol>
+                      <li>Klikoni në butonin "Regjistrohu" në krye të faqes</li>
+                      <li>Plotësoni formularin me të dhënat tuaja personale dhe profesionale</li>
+                      <li>Verifikoni adresën tuaj të email-it përmes lidhjes që do të merrni</li>
+                      <li>Hyni në sistem me kredencialet tuaja</li>
+                    </ol>
+                    <p class="mb-0"><strong>Shënim:</strong> Vetëm profesionistët e shëndetit të licencuar mund të regjistrohen si doktorë në platformë.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item border-0 mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    A janë të sigurta të dhënat e perderuesve në platformë?
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p>Siguria e të dhënave është prioriteti ynë kryesor. Ne përdorim:</p>
+                    <ul>
+                      <li>Enkriptim të avancuar AES-256 për të gjitha të dhënat</li>
+                      <li>Autentikim dyfaktor për qasje në llogari</li>
+                      <li>Auditim të rregullt të sigurisë</li>
+                      <li>Backup të automatizuara të të dhënave</li>
+                    </ul>
+                    <p class="mb-0">Platforma jonë është në përputhje me të gjitha rregulloret e nevojshme për mbrojtjen e privatësisë së të dhënave mesimore.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item border-0 mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Si mund të marr mbështetje teknike nëse kam probleme?
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p>Ne ofrojmë disa mënyra për mbështetje:</p>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <div class="card h-100 border-0 bg-light">
+                          <div class="card-body">
+                            <h5 class="d-flex align-items-center">
+                              <i class="bi bi-chat-left-text-fill text-primary me-2"></i> Chat në platformë
+                            </h5>
+                            <p class="mb-0">Përdorni chat-in në kohë reale brenda platformës për ndihmë të menjëhershme.</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6 mb-3">
+                        <div class="card h-100 border-0 bg-light">
+                          <div class="card-body">
+                            <h5 class="d-flex align-items-center">
+                              <i class="bi bi-envelope-fill text-primary me-2"></i> Email
+                            </h5>
+                            <p class="mb-0">Dërgoni një email në support@virtualkosova.com dhe do t'ju përgjigjemi brenda 24 orësh.</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="card h-100 border-0 bg-light">
+                          <div class="card-body">
+                            <h5 class="d-flex align-items-center">
+                              <i class="bi bi-telephone-fill text-primary me-2"></i> Telefon
+                            </h5>
+                            <p class="mb-0">Thirrni në +383 44 123 456 nga e hëna deri të premten, 08:00-16:00.</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="card h-100 border-0 bg-light">
+                          <div class="card-body">
+                            <h5 class="d-flex align-items-center">
+                              <i class="bi bi-file-text-fill text-primary me-2"></i> Dokumentacioni
+                            </h5>
+                            <p class="mb-0">Shfletoni dokumentacionin tonë të plotë për udhëzime të hollësishme.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="card section" id="contact">
+          <div class="card-header">
+            <i class="bi bi-headset"></i>
+            <h3 class="section-title mb-0">Kontaktoni Ne</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="d-flex align-items-center mb-4">
+                      <i class="bi bi-envelope-paper-fill text-primary me-2"></i> Dërgoni një Mesazh
+                    </h5>
+                    <form>
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Emri i Plotë</label>
+                        <input type="text" class="form-control" id="name" placeholder="Shkruani emrin tuaj">
+                      </div>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email Adresa</label>
+                        <input type="email" class="form-control" id="email" placeholder="shkruani email-in tuaj">
+                      </div>
+                      <div class="mb-3">
+                        <label for="subject" class="form-label">Subjekti</label>
+                        <select class="form-select" id="subject">
+                          <option selected>Zgjidhni një opsion</option>
+                          <option>Pyetje për platformën</option>
+                          <option>Probleme teknike</option>
+                          <option>Kërkesë për bashkëpunim</option>
+                          <option>Feedback</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="message" class="form-label">Mesazhi</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Shkruani mesazhin tuaj këtu..."></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Dërgo Mesazhin</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="d-flex align-items-center mb-4">
+                      <i class="bi bi-info-circle-fill text-primary me-2"></i> Informacione të Kontaktit
+                    </h5>
+                    <div class="mb-4">
+                      <h6 class="d-flex align-items-center">
+                        <i class="bi bi-geo-alt-fill text-primary me-2"></i> Adresa
+                      </h6>
+                      <p class="ms-4">Rr. "Nëna Terezë" Nr. 100<br>Prishtinë, Kosovë</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                      <h6 class="d-flex align-items-center">
+                        <i class="bi bi-telephone-fill text-primary me-2"></i> Telefon
+                      </h6>
+                      <p class="ms-4">+383 44 123 456<br>+383 38 123 456</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                      <h6 class="d-flex align-items-center">
+                        <i class="bi bi-envelope-fill text-primary me-2"></i> Email
+                      </h6>
+                      <p class="ms-4">info@virtualkosova.com<br>support@virtualkosova.com</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                      <h6 class="d-flex align-items-center">
+                        <i class="bi bi-clock-fill text-primary me-2"></i> Orari i Punës
+                      </h6>
+                      <p class="ms-4">E Hënë - E Premte: 08:00 - 16:00<br>E Shtunë: 09:00 - 13:00<br>E Dielë: Mbyllur</p>
+                    </div>
+                    
+                    <div>
+                      <h6 class="d-flex align-items-center mb-3">
+                        <i class="bi bi-share-fill text-primary me-2"></i> Rrjetet Sociale
+                      </h6>
+                      <div class="d-flex gap-3 ms-4">
+                        <a href="#" class="icon-circle bg-facebook">
+                          <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="icon-circle bg-twitter">
+                          <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="icon-circle bg-linkedin">
+                          <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="#" class="icon-circle bg-instagram">
+                          <i class="bi bi-instagram"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-          <p class="mb-0">&copy; 2025 Virtual World Kosova. Të gjitha të drejtat e rezervuara.</p>
-          <p class="text-muted small mb-0">Versioni 2.1.0</p>
+          <div class="row align-items-center">
+            <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+              <!--<img src="https://via.placeholder.com/150x50?text=Doktori+Virtual" alt="Logo" class="img-fluid mb-2" style="max-height: 40px;">-->
+              <p class="mb-0">Platforma kryesore për menaxhimin e praktikës mesimore në Kosovë.</p>
+            </div>
+            <div class="col-md-6 text-md-end text-center">
+              <p class="mb-0">&copy; 2025 Virtual Kosova. Të gjitha të drejtat e rezervuara.</p>
+              <p class="text-muted small mb-0">Versioni 2.1.0 | E përditësuar: 20 Maj 2025</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-    <!-- Optional Widget -->
+
+  <!-- Floating Action Button -->
+  <div class="fab" data-bs-toggle="tooltip" data-bs-placement="left" title="Ndihmë e Shpejtë">
+    <i class="bi bi-question-lg"></i>
+  </div>
+
   <script
   src="https://static.soulmachines.com/widget-snippet-1.12.0.min.js"
   data-sm-api-key="eyJzb3VsSWQiOiJkZG5hLWxvcmlrLXNoYWxhLW9yZy0tZml0bmVzcy1hbmQtc3BvcnQtdHJhaW4iLCJhdXRoU2VydmVyIjoiaHR0cHM6Ly9kaC5zb3VsbWFjaGluZXMuY2xvdWQvYXBpL2p3dCIsImF1dGhUb2tlbiI6ImFwaWtleV92MV9kOGQ3MWQ0OS1kYmY0LTRjYjEtYTE0MC04YTY1MDEyMTYyNTcifQ=="
   data-sm-greeting="Le të fillojmë"
   defer
 ></script>
+
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -492,6 +1182,45 @@
         document.querySelector(this.getAttribute('href')).scrollIntoView({
           behavior: 'smooth'
         });
+        
+        // Update active state in sidebar
+        document.querySelectorAll('#sidebar a').forEach(link => {
+          link.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+    
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+    
+    // Add animation on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.fade-in');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if(elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+    
+    // FAB click handler
+    document.querySelector('.fab').addEventListener('click', function() {
+      // Here you can implement quick help functionality
+      // For example, scroll to FAQ section or open chat
+      document.querySelector('#faq').scrollIntoView({
+        behavior: 'smooth'
       });
     });
   </script>
